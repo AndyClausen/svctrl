@@ -1,0 +1,29 @@
+{
+  "name": "svctrl",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "deploy": "node --loader ts-node/esm/transpile-only deploy.ts"
+  },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.11.1",
+    "@vercel/functions": "^1.5.2",
+    "@vercel/node": "^5.0.2",
+    "discord-interactions": "4.1.0",
+    "discord.js": "14.17.2",
+    "dotenv": "16.4.7",
+    "raw-body": "3.0.0",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "prettier": "3.4.2",
+    "ts-node": "10.9.2",
+    "typescript": "5.7.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
