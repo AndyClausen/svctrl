@@ -9,6 +9,9 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "production"]).default("development"),
     DISCORD_TOKEN: z.string(),
     DISCORD_PUBLIC_KEY: z.string(),
+    TUYA_ACCESS_KEY: z.string(),
+    TUYA_SECRET: z.string(),
+    TUYA_DEVICE_ID: z.string(),
     TEST_GUILD: z.string().optional(),
   },
 

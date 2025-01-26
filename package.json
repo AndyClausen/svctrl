@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@t3-oss/env-core": "^0.11.1",
+    "@tuya/tuya-connector-nodejs": "^2.1.2",
     "@vercel/functions": "^1.5.2",
     "@vercel/node": "^5.0.2",
     "discord-interactions": "4.1.0",
