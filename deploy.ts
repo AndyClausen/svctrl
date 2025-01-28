@@ -1,9 +1,10 @@
 import { env } from "./env.js";
-import { startServerMetdata } from "./interactions/start-server.js";
+import { startServerMetadata } from "./interactions/start-server.js";
+import { statusMetadata } from "./interactions/status.js";
 import client from "./sdks/client.js";
 
 client.once("ready", async (client) => {
-  const commands = [startServerMetdata];
+  const commands = [startServerMetadata, statusMetadata];
   if (env.TEST_GUILD) {
     console.log("Registering commands in test guild");
     const guild = await client.guilds.fetch(env.TEST_GUILD);

@@ -5,29 +5,30 @@ import {
   ApplicationCommandType,
   InteractionResponseType,
 } from "discord.js";
-import { tuya } from "../sdks/tuya.js";
+import { CSP100Props, tuya } from "../sdks/tuya.js";
 import { env } from "../env.js";
 
-export const startServerMetadata: ApplicationCommandData = {
-  name: "start-server",
-  description: "Turns on the server machine",
+export const statusMetadata: ApplicationCommandData = {
+  name: "status",
+  description: "Check whether the server is on",
   type: ApplicationCommandType.ChatInput,
 };
 
-export default async function startServer(
+export default async function status(
   command: APIApplicationCommandInteraction,
   response: VercelResponse
 ) {
-  const res = await tuya.request({
-    path: `/v1.0/iot-03/devices/${env.TUYA_DEVICE_ID}/commands`,
-    method: "POST",
-    body: { commands: [{ code: "switch_1", value: true }] },
+  const res = await tuya.request<CSP100Props>({
+    path: `/v1.0/iot-03/devices/${env.TUYA_DEVICE_ID}/status`,
+    method: "GET",
   });
+
+  const status = res.result.find((item) => item.code === "switch_1");
 
   return response.send({
     type: InteractionResponseType.ChannelMessageWithSource,
     data: {
-      content: `Result: ${res.result}, Message: ${res.msg}`,
+      content: `Server is ${status?.value ? "on" : "off"}`,
       flags: 64,
     },
   });

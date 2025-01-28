@@ -5,8 +5,9 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 import { z } from "zod";
 import { env } from "../env.js";
 import startServer, {
-  startServerMetdata,
+  startServerMetadata,
 } from "../interactions/start-server.js";
+import status, { statusMetadata } from "../interactions/status.js";
 
 export default async function handler(
   request: VercelRequest,
@@ -53,8 +54,10 @@ export default async function handler(
   if (message.type === InteractionType.ApplicationCommand) {
     try {
       switch (message.data.name.toLowerCase()) {
-        case startServerMetdata.name:
+        case startServerMetadata.name:
           return await startServer(message, response);
+        case statusMetadata.name:
+          return await status(message, response);
         default:
           console.error("Unknown command: " + message.data.name);
           return response.status(400).send({ error: "Unknown Command" });
