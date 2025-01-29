@@ -13,6 +13,7 @@ export const env = createEnv({
     TUYA_SECRET: z.string(),
     TUYA_DEVICE_ID: z.string(),
     TEST_GUILD: z.string().optional(),
+    SCHEDULE_TOKEN: z.string(),
   },
 
   /**
